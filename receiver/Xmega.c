@@ -12,7 +12,7 @@
 #include <avr/interrupt.h>
 
 /*
- * This file holds the mini functions used in the transmitter code. It keeps
+ * This file holds the mnini functions used in the transmitter code. It keeps
  * things clean and I will warn thee now that there are some functions that are
  * not used but were created for testing purpose (I call them junk-func). 
  * I also write comments in a weird way because it entertains me, me not you. So
