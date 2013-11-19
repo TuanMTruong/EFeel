@@ -145,10 +145,10 @@ void USART_SendString_Debug(char* str){
 void SetupSPI_LED(){
 	
 	SPI_LED1_PORT.DIRSET = MOSI_bm | SCK_bm;
-	SPI_LED1.CTRL = SPI_ENABLE_bm |SPI_DORD_bm | SPI_MASTER_bm | SPI_PRESCALER_DIV128_gc;
+	SPI_LED1.CTRL = SPI_ENABLE_bm |SPI_DORD_bm | SPI_MASTER_bm | SPI_CLK2X_bm | SPI_PRESCALER_DIV2_gc;
 	
 	SPI_LED2_PORT.DIRSET = MOSI_bm | SCK_bm;
-	SPI_LED2.CTRL = SPI_ENABLE_bm |SPI_DORD_bm | SPI_MASTER_bm | SPI_PRESCALER_DIV128_gc;
+	SPI_LED2.CTRL = SPI_ENABLE_bm |SPI_DORD_bm | SPI_MASTER_bm | SPI_CLK2X_bm | SPI_PRESCALER_DIV2_gc;
 	return; 
 }
 
@@ -293,13 +293,11 @@ void PrintFIFO(){
 
 ISR(USART_XBEE_RXVECT)
 {
+	//store received data into temp space
 	ReceiverData = USART_READBYTE(USART_XBEE);
-	//FIFOpush(ReceiverData);
 	
-	//USART_SendString_Debug(FIFOBuffer[FIFOPosition]);
 	if(FIFOPosition < 41){
 		FIFOpush(ReceiverData);
-		//USART_SendByte_DEBUG_Blocking(FIFOBuffer[FIFOPosition-1]);
 	}
 	if (ReceiverData == (OPEN_RECV|myAddress))
 	{
@@ -307,28 +305,6 @@ ISR(USART_XBEE_RXVECT)
 		FIFOpush(ReceiverData);
 	}
 	
-	
-	//USART_SendByte_DEBUG_Blocking(ReceiverData);
-	/**
-	if(addrCatch){
-		if(dataFlag <8){
-			if (ReceiverData>10)
-				LED_PORT.OUT |= 1<<dataFlag;
-			else
-				LED_PORT.OUT &= ~(1<<dataFlag);
-			
-		}
-		dataFlag ++;
-		if (dataFlag >= 38)
-			dataFlag = 0;
-	}
-	else{
-		if (ReceiverData = (myAddress |ReadyData))
-			addrCatch = 1;
-		else 
-			addrCatch = 0;
-	}
-	**/	
 	
 }
 

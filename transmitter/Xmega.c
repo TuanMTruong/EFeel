@@ -233,34 +233,13 @@ ISR(USART_XBEE_RXVECT)
 }
 
 ISR(USART_XBEE_TXVECT){
-//	USART_SendByte_XBEE_Blocking(0xFF);
 }
 
 ISR(USART_DEBUG_RXVECT){
-	/*
-	USART_SendString_Debug("\nReceivers:\n");
-	ReceiverData = USART_READBYTE(USART_DEBUG);
-	if(ReceiverData == CheckReceiverTable){
-		PrintActiveReceivers();
-	}
-	*/
-	ReceiverData = USART_READBYTE(USART_DEBUG);
-	USART_WaitForTx(USART_DEBUG);
-	USART_SENDBYTE(USART_DEBUG, ReceiverData);
-	USART_SendByte_XBEE_Blocking(ReceiverData);
-	LED_PORT.OUT++;
+
 }
 
 ISR(USART_USB_RXVECT){
-	//USART_SendString_Debug("\nReceivers:\n");
-	
-	//ReceiverData = USART_READBYTE(USART_USB);
-	//if(ReceiverData == START_HEADER){
-		//USART_WaitForTx(USART_USB);
-		//USART_SENDBYTE(USART_USB, ReceiverData);
-	//	USART_SendByte_XBEE_Blocking(ReceiverData);
-	//	LED_PORT.OUT++;
-	//}
 }
 
 

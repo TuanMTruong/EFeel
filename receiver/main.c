@@ -77,10 +77,6 @@ int main(void)
 	
 	while (1)
 	{
-		// USART_WaitForRx(USART_XBEE);
-		// temp = USART_READBYTE(USART_XBEE);
-		// PORTA.OUT = temp;
-		//PrintFIFO();
 		if( FIFOverify()){
 			SetEL();
 			SetLED();
