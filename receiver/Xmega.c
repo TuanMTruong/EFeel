@@ -139,16 +139,16 @@ void USART_SendString_Debug(char* str){
 
 
 /************************************************************************/
-/* SPI FUNCTIONS														*/
+/* SPI FUNCTIONS							*/
 /************************************************************************/
 
 void SetupSPI_LED(){
 	
 	SPI_LED1_PORT.DIRSET = MOSI_bm | SCK_bm;
-	SPI_LED1.CTRL = SPI_ENABLE_bm |SPI_DORD_bm | SPI_MASTER_bm | SPI_CLK2X_bm | SPI_PRESCALER_DIV2_gc;
+	SPI_LED1.CTRL = SPI_ENABLE_bm |SPI_DORD_bm | SPI_MASTER_bm | SPI_PRESCALER_DIV64_gc;
 	
 	SPI_LED2_PORT.DIRSET = MOSI_bm | SCK_bm;
-	SPI_LED2.CTRL = SPI_ENABLE_bm |SPI_DORD_bm | SPI_MASTER_bm | SPI_CLK2X_bm | SPI_PRESCALER_DIV2_gc;
+	SPI_LED2.CTRL = SPI_ENABLE_bm |SPI_DORD_bm | SPI_MASTER_bm | SPI_PRESCALER_DIV64_gc;
 	return; 
 }
 
@@ -313,6 +313,12 @@ ISR(USART_XBEE_RXVECT)
 ISR(__vector_default){
 	//reti;
 }
+
+
+/************************************************************************/
+/* SPI interrupt routines                                               */
+/************************************************************************/
+
 
 
 
